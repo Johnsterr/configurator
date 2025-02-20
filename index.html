@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Конфигуратор</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <form class="configurator-form" id="config-form">
+                <h2 class="configurator-form__title">Конфигуратор оборудования</h2>
+                <div class="constructive-wrapper">
+                    <label class="configurator-label">
+                        <p class="configurator-label__name">Габариты (Д/Ш/В, м):</p>
+                        <select class="configurator-select" id="size">
+                            <option value="0">10/2.44/2.7</option>
+                            <option value="1">10/3.15/2.7</option>
+                            <option value="2">индивидуальный</option>
+                        </select>
+                    </label>
+                    <label class="configurator-label">
+                        <p class="configurator-label__name">Климатическое исполнение:</p>
+                        <select class="configurator-select" id="climate">
+                            <option value="0">Юг</option>
+                            <option value="1">Центр</option>
+                            <option value="2">Север</option>
+                            <option value="3">Арктик</option>
+                        </select>
+                    </label>
+
+                    <div class="configurator-checkboxes-wrapper">
+                        <p class="configurator-label__name">Конструктивное исполнение:</p>
+                        <div>
+                            <input class="configurator-checkbox" type="checkbox" id="construct" />
+                            <label id="construct-type" for="construct">Небронированный</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="options-wrapper">
+                    <div class="configurator-checkboxes-wrapper">
+                        <p class="configurator-label__name">Помещение санузла:</p>
+                        <div>
+                            <input class="configurator-checkbox" type="checkbox" id="toilet" />
+                            <label id="toilet-variant" for="toilet">Нет</label>
+                        </div>
+                    </div>
+
+                    <div class="configurator-checkboxes-wrapper">
+                        <p class="configurator-label__name">Мебель:</p>
+                        <div>
+                            <input class="configurator-checkbox" type="checkbox" id="furniture" />
+                            <label id="furniture-variant" for="furniture">Нет</label>
+                        </div>
+                    </div>
+
+                    <div class="configurator-checkboxes-wrapper">
+                        <p class="configurator-label__name">Пожарная сигнализация:</p>
+                        <div>
+                            <input class="configurator-checkbox" type="checkbox" id="fire-alarm" disabled checked />
+                            <label id="fire-alarm-variant" for="fire-alarm">Нет</label>
+                        </div>
+                    </div>
+
+                    <div class="configurator-checkboxes-wrapper">
+                        <p class="configurator-label__name">Телефонная связь:</p>
+                        <div>
+                            <input class="configurator-checkbox" type="checkbox" id="telephone-connection" />
+                            <label id="telephone-connection-variant" for="telephone-connection">Нет</label>
+                        </div>
+                    </div>
+
+                    <div class="configurator-checkboxes-wrapper">
+                        <p class="configurator-label__name">Вентиляция и кондициорирование:</p>
+                        <div>
+                            <input class="configurator-checkbox" type="checkbox" id="ventilation" />
+                            <label id="ventilation-variant" for="ventilation">Нет</label>
+                        </div>
+                    </div>
+
+                    <div class="configurator-checkboxes-wrapper">
+                        <p class="configurator-label__name">Электроотопление:</p>
+                        <div>
+                            <input class="configurator-checkbox" type="checkbox" id="heating" />
+                            <label id="heating-variant" for="heating">Нет</label>
+                        </div>
+                    </div>
+
+                    <div class="configurator-checkboxes-wrapper">
+                        <p class="configurator-label__name">Система охранного освещения (СОО):</p>
+                        <div>
+                            <input class="configurator-checkbox" type="checkbox" id="security-light" />
+                            <label id="security-light-variant" for="security-light">Нет</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Подсистемы охраны объекта -->
+                <div class="protection-subsystems">
+                    <label class="configurator-label">
+                        <p class="configurator-label__name">Периметральная охранная сигнализация (ПОС):</p>
+                        <select class="configurator-select" id="perimeter-security-alarm">
+                            <option value="0">нет</option>
+                            <option value="1">до 500 м</option>
+                            <option value="2">до 1000 м</option>
+                            <option value="3">до 1500 м</option>
+                        </select>
+                    </label>
+
+                    <label class="configurator-label">
+                        <p class="configurator-label__name">Объектовая охранная сигнализация (ООС):</p>
+                        <select class="configurator-select" id="security-alarm-system">
+                            <option value="0">нет</option>
+                            <option value="1">1 здание</option>
+                            <option value="2">до 30 зданий</option>
+                        </select>
+                    </label>
+
+                    <label class="configurator-label">
+                        <p class="configurator-label__name">Видеонаблюдение (СОТ, ССООИ):</p>
+                        <select class="configurator-select" id="video-surveillance">
+                            <option value="0">нет</option>
+                            <option value="1">до 10 камер</option>
+                            <option value="2">до 50 камер</option>
+                            <option value="3">до 100 камер</option>
+                        </select>
+                    </label>
+
+                    <label class="configurator-label">
+                        <p class="configurator-label__name">Контроль доступа (СКУД):</p>
+                        <select class="configurator-select" id="access-control">
+                            <option value="0">нет</option>
+                            <option value="1">до 10 точек</option>
+                            <option value="2">до 100 точек</option>
+                        </select>
+                    </label>
+
+                    <label class="configurator-label">
+                        <p class="configurator-label__name">Пуль средств защиты проезда (СЗП):</p>
+                        <select class="configurator-select" id="passage-protection">
+                            <option value="0">нет</option>
+                            <option value="1">шлагбаум</option>
+                            <option value="2">шлагбаум и ПТБ</option>
+                            <option value="3">несколько ПТБ</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="additional-information">
+                    <div class="configurator-inputs-wrapper">
+                        <p class="configurator-label__name">Наименование организации или ИНН:</p>
+                        <div>
+                            <input
+                                class="configurator-input"
+                                id="org-name"
+                                required
+                                placeholder="Наименование организации или ИНН"
+                            />
+                        </div>
+                    </div>
+                    <div class="configurator-inputs-wrapper">
+                        <p class="configurator-label__name">Электронная почта:</p>
+                        <div>
+                            <input
+                                class="configurator-input"
+                                type="email"
+                                id="email"
+                                required
+                                placeholder="your@email.ru"
+                            />
+                        </div>
+                    </div>
+                    <div class="configurator-inputs-wrapper">
+                        <p class="configurator-label__name">Номер телефона:</p>
+                        <div>
+                            <input
+                                class="configurator-input"
+                                type="tel"
+                                id="phone"
+                                required
+                                placeholder="+79126541234"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="configurator-inputs-wrapper">
+                        <p class="configurator-label__name">Примечание:</p>
+                        <div>
+                            <textarea
+                                class="configurator-textarea"
+                                id="additionals"
+                                rows="3"
+                                placeholder="Примечание"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TODO: расчет по кнопке с отправкой csv на почту -->
+                <h3 class="total-price-text">Итоговая стоимость: <span id="total-price">0</span> ₽</h3>
+
+                <button class="configurator-btn" type="submit">Отправить заявку</button>
+            </form>
+        </div>
+
+        <div id="overlay" class="overlay">
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <button id="close-modal" class="modal__close">&times;</button>
+                    <h3 class="modal__title" id="modal-title">Спасибо!</h3>
+                    <p class="modal__text" id="modal-text">
+                        Для уточнения исходных данных и выполнения подробного расчёта стоимости с Вами свяжется пресейл
+                        инженер нашей компании.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
