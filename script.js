@@ -155,10 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
         el.addEventListener("change", calculatePrice);
     });
 
-    let isValidOrgName = false;
-    let isValidEmail = false;
-    let isValidPhone = false;
-
     function validateOrgName() {
         const name = orgNameInput.value.trim();
 
@@ -271,29 +267,5 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Пожалуйста повторите запрос позднее или направьте свои данные на адрес (email@test.ru)\nС вами свяжется пресейл инженер нашей компании.";
                 openModalWindow();
             });
-
-        // или
-        // const formData = new FormData();
-        // formData.append("size", document.getElementById("size").selectedOptions[0].text);
-        // formData.append("climate", document.getElementById("climate").selectedOptions[0].text);
-        // formData.append("toilet", document.getElementById("toilet").checked ? "Да" : "Нет");
-        // formData.append("furniture", document.getElementById("furniture").checked ? "Да" : "Нет");
-        // formData.append("fireAlarm", document.getElementById("fireAlarm").checked ? "Да" : "Нет");
-        // formData.append("ventilation", document.getElementById("ventilation").checked ? "Да" : "Нет");
-        // formData.append("heating", document.getElementById("heating").checked ? "Да" : "Нет");
-        // formData.append("totalPrice", document.getElementById("totalPrice").textContent.replace(/\s/g, ""));
-
-        // fetch("https://yourserver.com/api/order", {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         alert("Ваш заказ отправлен!");
-        //     })
-        //     .catch((error) => {
-        //         alert("Ошибка отправки!");
-        //         console.error("Ошибка:", error);
-        //     });
     });
 });
