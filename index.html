@@ -3,13 +3,19 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Конфигуратор</title>
+        <title>Конфигуратор оборудования МОПР</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <div class="container">
             <form class="configurator-form" id="config-form">
-                <h2 class="configurator-form__title">Конфигуратор оборудования</h2>
+                <h2 class="configurator-form__title">Конфигуратор оборудования МОПР</h2>
                 <div class="constructive-wrapper">
                     <label class="configurator-label">
                         <p class="configurator-label__name">Габариты (Д/Ш/В, м):</p>
@@ -33,7 +39,7 @@
                         <p class="configurator-label__name">Конструктивное исполнение:</p>
                         <div>
                             <input class="configurator-checkbox" type="checkbox" id="construct" />
-                            <label id="construct-type" for="construct">Небронированный</label>
+                            <label id="construct-type" for="construct">Бронь - Бр4</label>
                         </div>
                     </div>
                 </div>
@@ -43,7 +49,7 @@
                         <p class="configurator-label__name">Помещение санузла:</p>
                         <div>
                             <input class="configurator-checkbox" type="checkbox" id="toilet" />
-                            <label id="toilet-variant" for="toilet">Нет</label>
+                            <label id="toilet-variant" for="toilet">включить в расчет</label>
                         </div>
                     </div>
 
@@ -51,7 +57,7 @@
                         <p class="configurator-label__name">Мебель:</p>
                         <div>
                             <input class="configurator-checkbox" type="checkbox" id="furniture" />
-                            <label id="furniture-variant" for="furniture">Нет</label>
+                            <label id="furniture-variant" for="furniture">включить в расчет</label>
                         </div>
                     </div>
 
@@ -59,7 +65,7 @@
                         <p class="configurator-label__name">Пожарная сигнализация:</p>
                         <div>
                             <input class="configurator-checkbox" type="checkbox" id="fire-alarm" disabled checked />
-                            <label id="fire-alarm-variant" for="fire-alarm">Нет</label>
+                            <label id="fire-alarm-variant" for="fire-alarm">включено</label>
                         </div>
                     </div>
 
@@ -67,7 +73,9 @@
                         <p class="configurator-label__name">Телефонная связь:</p>
                         <div>
                             <input class="configurator-checkbox" type="checkbox" id="telephone-connection" />
-                            <label id="telephone-connection-variant" for="telephone-connection">Нет</label>
+                            <label id="telephone-connection-variant" for="telephone-connection">
+                                включить в расчет
+                            </label>
                         </div>
                     </div>
 
@@ -75,7 +83,7 @@
                         <p class="configurator-label__name">Вентиляция и кондициорирование:</p>
                         <div>
                             <input class="configurator-checkbox" type="checkbox" id="ventilation" />
-                            <label id="ventilation-variant" for="ventilation">Нет</label>
+                            <label id="ventilation-variant" for="ventilation">включить в расчет</label>
                         </div>
                     </div>
 
@@ -83,7 +91,7 @@
                         <p class="configurator-label__name">Электроотопление:</p>
                         <div>
                             <input class="configurator-checkbox" type="checkbox" id="heating" />
-                            <label id="heating-variant" for="heating">Нет</label>
+                            <label id="heating-variant" for="heating">включить в расчет</label>
                         </div>
                     </div>
 
@@ -91,7 +99,7 @@
                         <p class="configurator-label__name">Система охранного освещения (СОО):</p>
                         <div>
                             <input class="configurator-checkbox" type="checkbox" id="security-light" />
-                            <label id="security-light-variant" for="security-light">Нет</label>
+                            <label id="security-light-variant" for="security-light">включить в расчет</label>
                         </div>
                     </div>
                 </div>
@@ -148,40 +156,47 @@
                 </div>
 
                 <div class="additional-information">
-                    <div class="configurator-inputs-wrapper">
-                        <p class="configurator-label__name">Наименование организации или ИНН:</p>
+                    <div class="org-name-wrapper configurator-inputs-wrapper">
+                        <p class="configurator-label__name">Наименование организации или ИНН: <span>*</span></p>
                         <div>
                             <input
                                 class="configurator-input"
+                                type="text"
+                                name="organization-name"
                                 id="org-name"
                                 required
                                 placeholder="Наименование организации или ИНН"
                             />
                         </div>
+                        <span class="input-error-span" id="org-name-errors"></span>
                     </div>
-                    <div class="configurator-inputs-wrapper">
-                        <p class="configurator-label__name">Электронная почта:</p>
+                    <div class="email-wrapper configurator-inputs-wrapper">
+                        <p class="configurator-label__name">Электронная почта: <span>*</span></p>
                         <div>
                             <input
                                 class="configurator-input"
                                 type="email"
+                                name="email"
                                 id="email"
                                 required
                                 placeholder="your@email.ru"
                             />
                         </div>
+                        <span class="input-error-span" id="email-errors"></span>
                     </div>
-                    <div class="configurator-inputs-wrapper">
-                        <p class="configurator-label__name">Номер телефона:</p>
+                    <div class="phone-wrapper configurator-inputs-wrapper">
+                        <p class="configurator-label__name">Номер телефона: <span>*</span></p>
                         <div>
                             <input
                                 class="configurator-input"
                                 type="tel"
+                                name="phone"
                                 id="phone"
                                 required
                                 placeholder="+79126541234"
                             />
                         </div>
+                        <span class="input-error-span" id="phone-errors"></span>
                     </div>
 
                     <div class="configurator-inputs-wrapper">
@@ -199,8 +214,27 @@
 
                 <!-- TODO: расчет по кнопке с отправкой csv на почту -->
                 <h3 class="total-price-text">Итоговая стоимость: <span id="total-price">0</span> ₽</h3>
-
-                <button class="configurator-btn" type="submit">Отправить заявку</button>
+                <button class="configurator-btn" type="submit" id="submit-btn" disabled>Отправить заявку</button>
+                <div class="policy">
+                    <p class="policy__text">
+                        Нажимая кнопку <b><u>Отправить заявку</u></b> Вы даете свое согласие на обработку персональных
+                        данных в соответствии с действующей
+                        <a class="policy__link" href="#" target="_blank">
+                            Политикой об обработке персональных данных
+                        </a>
+                        (ФЗ-152 «О персональных данных»)<br /><br />
+                        * Базовый конфигуратор определяет предварительную стоимость модуля в полном составе помещений
+                        (Аппаратная, Помещение охраны, Проходная). При необходимости изменить состав помещений и
+                        габариты модуля - оставьте комментарий в поле "Примечание" и с Вами свяжутся наши
+                        специалисты.<br /><br />
+                        ** Предварительный расчет учитывает размещение шкафов управления и серверного оборудования
+                        выбранных подсистем Технических средств охраны (СКУД, СОТ, ПОС, ООС, СОО, ССООИ, СЗП) в границах
+                        модуля МОПР, а именно: оборудования в помещении аппаратной, оборудования в помещении охраны,
+                        турникета и оборудования в модуле проходной, а также считывателей на дверях модуля и видеокамер
+                        для охраны модуля МОПР. Стоимость оборудования, материалов и работ по установке технических
+                        средств охраны на периферии Заказчика рассчитываются дополнительно по запросу.
+                    </p>
+                </div>
             </form>
         </div>
 

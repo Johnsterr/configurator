@@ -48,28 +48,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const configForm = document.getElementById("config-form");
     const sizeSelect = document.getElementById("size");
     const constructCheckbox = document.getElementById("construct");
-    const constructTypeSpan = document.getElementById("construct-type");
     const climateSelect = document.getElementById("climate");
     const toiletCheckbox = document.getElementById("toilet");
-    const toiletVariantSpan = document.getElementById("toilet-variant");
     const furnitureCheckbox = document.getElementById("furniture");
-    const furnitureVariantSpan = document.getElementById("furniture-variant");
     const fireAlarmCheckbox = document.getElementById("fire-alarm");
-    const fireAlarmVariantSpan = document.getElementById("fire-alarm-variant");
     const telephoneConnectionCheckbox = document.getElementById("telephone-connection");
-    const telephoneConnectionVariantSpan = document.getElementById("telephone-connection-variant");
     const ventilationCheckbox = document.getElementById("ventilation");
-    const ventilationVariantSpan = document.getElementById("ventilation-variant");
     const heatingCheckbox = document.getElementById("heating");
-    const heatingVariantSpan = document.getElementById("heating-variant");
     const videoSurveillanceSelect = document.getElementById("video-surveillance");
     const perimeterSecurityAlarmSelect = document.getElementById("perimeter-security-alarm");
     const securityAlarmSystemSelect = document.getElementById("security-alarm-system");
     const securityLightingSystemCheckbox = document.getElementById("security-light");
-    const securityLightingSystemVariantSpan = document.getElementById("security-light-variant");
     const accessControlSelect = document.getElementById("access-control");
     const passageProtectionSelect = document.getElementById("passage-protection");
     const totalPriceElement = document.getElementById("total-price");
+
+    const orgNameInput = document.getElementById("org-name");
+    const orgNameErrors = document.getElementById("org-name-errors");
+    const emailInput = document.getElementById("email");
+    const emailErrors = document.getElementById("email-errors");
+    const telInput = document.getElementById("phone");
+    const telErrors = document.getElementById("phone-errors");
+
+    const submitButton = document.getElementById("submit-btn");
 
     const modal = document.getElementById("modal");
     const overlay = document.getElementById("overlay"); // Оверлей
@@ -104,105 +105,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    function calculateConstruct() {
+    function calculateOption(optionStatus = false, oprionPrice = 0) {
         let price = 0;
 
-        if (constructCheckbox.checked) {
-            constructTypeSpan.innerText = "Бронь - Бр4";
-            price = CONFIG.basePrices.construct;
-        } else {
-            constructTypeSpan.innerText = "Небронированный";
-        }
-
-        return price;
-    }
-
-    function calculateToilet() {
-        let price = 0;
-
-        if (toiletCheckbox.checked) {
-            toiletVariantSpan.innerText = "Да";
-            price = CONFIG.basePrices.toilet;
-        } else {
-            toiletVariantSpan.innerText = "Нет";
-        }
-
-        return price;
-    }
-
-    function calculateFurniture() {
-        let price = 0;
-
-        if (furnitureCheckbox.checked) {
-            furnitureVariantSpan.innerText = "Да";
-            price = CONFIG.basePrices.furniture;
-        } else {
-            furnitureVariantSpan.innerText = "Нет";
-        }
-
-        return price;
-    }
-
-    function calculateFireAlarm() {
-        let price = 0;
-
-        if (fireAlarmCheckbox.checked) {
-            fireAlarmVariantSpan.innerText = "Да";
-            price = CONFIG.basePrices.fireAlarm;
-        } else {
-            fireAlarmVariantSpan.innerText = "Нет";
-        }
-
-        return price;
-    }
-
-    function calculateTelephoneConnection() {
-        let price = 0;
-
-        if (telephoneConnectionCheckbox.checked) {
-            telephoneConnectionVariantSpan.innerText = "Да";
-            price = CONFIG.basePrices.telephoneConnection;
-        } else {
-            telephoneConnectionVariantSpan.innerText = "Нет";
-        }
-
-        return price;
-    }
-
-    function calculateVentilation() {
-        let price = 0;
-
-        if (ventilationCheckbox.checked) {
-            ventilationVariantSpan.innerText = "Да";
-            price = CONFIG.basePrices.ventilation;
-        } else {
-            ventilationVariantSpan.innerText = "Нет";
-        }
-
-        return price;
-    }
-
-    function calculateHeating() {
-        let price = 0;
-
-        if (heatingCheckbox.checked) {
-            heatingVariantSpan.innerText = "Да";
-            price = CONFIG.basePrices.heating;
-        } else {
-            heatingVariantSpan.innerText = "Нет";
-        }
-
-        return price;
-    }
-
-    function calculateSecurityLightingSystem() {
-        let price = 0;
-
-        if (securityLightingSystemCheckbox.checked) {
-            securityLightingSystemVariantSpan.innerText = "Да";
-            price = CONFIG.basePrices.securityLightingSystem;
-        } else {
-            securityLightingSystemVariantSpan.innerText = "Нет";
+        if (optionStatus) {
+            price = oprionPrice;
         }
 
         return price;
@@ -214,14 +121,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let price = 0;
 
         price += CONFIG.basePrices.size * CONFIG.coefficients.size[sizeSelect.value];
-        price += calculateConstruct();
+        price += calculateOption(constructCheckbox.checked, CONFIG.basePrices.construct);
         price += CONFIG.basePrices.climate * CONFIG.coefficients.climate[climateSelect.value];
-        price += calculateToilet();
-        price += calculateFurniture();
-        price += calculateFireAlarm();
-        price += calculateTelephoneConnection();
-        price += calculateVentilation();
-        price += calculateHeating();
+        price += calculateOption(toiletCheckbox.checked, CONFIG.basePrices.toilet);
+        price += calculateOption(furnitureCheckbox.checked, CONFIG.basePrices.furniture);
+        price += calculateOption(fireAlarmCheckbox.checked, CONFIG.basePrices.fireAlarm);
+        price += calculateOption(telephoneConnectionCheckbox.checked, CONFIG.basePrices.telephoneConnection);
+        price += calculateOption(ventilationCheckbox.checked, CONFIG.basePrices.ventilation);
+        price += calculateOption(heatingCheckbox.checked, CONFIG.basePrices.heating);
 
         price +=
             CONFIG.basePrices.videoSurveillance * CONFIG.coefficients.videoSurveillance[videoSurveillanceSelect.value];
@@ -234,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
             CONFIG.basePrices.securityAlarmSystem *
             CONFIG.coefficients.securityAlarmSystem[securityAlarmSystemSelect.value];
 
-        price += calculateSecurityLightingSystem();
+        price += calculateOption(securityLightingSystemCheckbox.checked, CONFIG.basePrices.securityLightingSystem);
         price += CONFIG.basePrices.accessControl * CONFIG.coefficients.accessControl[accessControlSelect.value];
 
         price +=
@@ -244,9 +151,77 @@ document.addEventListener("DOMContentLoaded", function () {
         totalSum = price;
     }
 
-    document.querySelectorAll("input, select").forEach((el) => {
+    document.querySelectorAll("input[type='checkbox'], select").forEach((el) => {
         el.addEventListener("change", calculatePrice);
     });
+
+    let isValidOrgName = false;
+    let isValidEmail = false;
+    let isValidPhone = false;
+
+    function validateOrgName() {
+        const name = orgNameInput.value.trim();
+
+        if (name === "") {
+            orgNameInput.classList.add("is-error");
+            orgNameErrors.textContent = "Это поле обязательное";
+            return false;
+        } else {
+            orgNameInput.classList.remove("is-error");
+            orgNameErrors.textContent = "";
+            return true;
+        }
+    }
+
+    function validateEmail() {
+        const email = emailInput.value.trim();
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (email === "") {
+            emailInput.classList.add("is-error");
+            emailErrors.textContent = "Введите email";
+            return false;
+        } else if (!emailPattern.test(email.toLowerCase())) {
+            emailInput.classList.add("is-error");
+            emailErrors.textContent = "Введите корректный email";
+            return false;
+        } else {
+            emailInput.classList.remove("is-error");
+            emailErrors.textContent = "";
+            return true;
+        }
+    }
+
+    function validateTel() {
+        const tel = telInput.value.trim();
+        const telPattern = /^(\+?\d+)$/;
+
+        if (tel === "") {
+            telInput.classList.add("is-error");
+            telErrors.textContent = "Введите номер телефона";
+            return false;
+        } else if (!telPattern.test(tel)) {
+            telInput.classList.add("is-error");
+            telErrors.textContent = "Допустимы только цифры (и + в начале номера)";
+            return false;
+        } else {
+            telInput.classList.remove("is-error");
+            telErrors.textContent = "";
+            return true;
+        }
+    }
+
+    function validateForm() {
+        const isOrgNameValid = validateOrgName();
+        const isEmailValid = validateEmail();
+        const isTelValid = validateTel();
+
+        submitButton.disabled = !(isOrgNameValid && isEmailValid && isTelValid);
+    }
+
+    orgNameInput.addEventListener("input", validateForm);
+    emailInput.addEventListener("input", validateForm);
+    telInput.addEventListener("input", validateForm);
 
     calculatePrice();
 
@@ -254,13 +229,13 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
 
         const formData = {
-            size: document.getElementById("size").selectedOptions[0].value,
-            climate: document.getElementById("climate").selectedOptions[0].value,
-            toilet: document.getElementById("toilet").checked,
-            furniture: document.getElementById("furniture").checked,
-            fireAlarm: document.getElementById("fire-alarm").checked,
-            ventilation: document.getElementById("ventilation").checked,
-            heating: document.getElementById("heating").checked,
+            size: sizeSelect.selectedOptions[0].value,
+            climate: climateSelect.selectedOptions[0].value,
+            toilet: toiletCheckbox.checked,
+            furniture: furnitureCheckbox.checked,
+            fireAlarm: fireAlarmCheckbox.checked,
+            ventilation: ventilationCheckbox.checked,
+            heating: heatingCheckbox.checked,
             totalPrice: totalSum,
         };
 
